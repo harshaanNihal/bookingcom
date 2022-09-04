@@ -14,7 +14,6 @@ const useFetch = (url) => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        console.log('inside')
         const res = await axios.get(baseurl+url, {
           withCredentials: true,
           headers: {
@@ -26,7 +25,6 @@ const useFetch = (url) => {
         });
 
         setData(res.data);
-        console.log(res.data);
       } catch (err) {
         setError(err);
       }
