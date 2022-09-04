@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import axios from "axios";
 
-const baseurl=`https://shrouded-castle-17828.herokuapp.com/api`; 
+const baseurl=`https://shrouded-castle-17828.herokuapp.com/api`;
+// const baseurl=`https://boiling-headland-00186.herokuapp.com/api`;
 
 
 const useFetch = (url) => {
@@ -13,7 +14,17 @@ const useFetch = (url) => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const res = await axios.get(baseurl+url);
+        console.log('inside')
+        const res = await axios.get(baseurl+url, {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+            "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token, Authorization, Accept,charset,boundary,Content-Length"
+        },
+        });
+
         setData(res.data);
         console.log(res.data);
       } catch (err) {
